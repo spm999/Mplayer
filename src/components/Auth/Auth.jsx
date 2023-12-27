@@ -3,6 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../../firebase/firebase';
+import './Auth.css'
 
 const Auth = () => {
   const provider = new GoogleAuthProvider();
@@ -26,6 +27,9 @@ const Auth = () => {
       const result = await signInWithPopup(auth, provider);
       login(result.user);
       console.log('Google login successful');
+      // const user = result.user;
+      // // Access display name directly from the user object
+      // // const displayName = user.displayName;
     } catch (error) {
       console.error('Google login error:', error.message);
     }
@@ -38,29 +42,28 @@ const Auth = () => {
   }
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleEmailLogin}>
-        <label>
-          Email:
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <label>
-          Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        <button type="submit">Login with Email</button>
-      </form>
+    <>
+      <div className='login-container'>
+        <h2>Login</h2>
+        <form onSubmit={handleEmailLogin}>
+          <input type="email" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <button type="submit">Login with Email</button>
+        </form>
 
-      <button onClick={handleGoogleLogin}>Login with Google</button>
+        <div className="google-button">
+          <button onClick={handleGoogleLogin}>Login with Google</button>
+        </div>
 
-      <p>
-        Don't have an account? <Link to="/signup">Sign up here</Link>
-      </p>
-      <p>
-        <Link to="/forgotpassword">Forgot your password? </Link>
-      </p>
-    </div>
+
+        <p>
+          Don't have an account? <Link to="/signup">Sign up here</Link>
+        </p>
+        <p>
+          <Link to="/forgotpassword">Forgot your password? </Link>
+        </p>
+      </div>
+    </>
   );
 };
 
