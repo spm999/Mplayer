@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import firebaseConfig from './firebaseConfig.js';
-// import './ForgetPass.css';
+import './ForgotPassword.css';
 
 
 const ForgotPassword = () => {
@@ -28,7 +28,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className='ForgetPassword'>
+    <div className='ForgotPassword'>
       <h2>Forget Password</h2>
       <form onSubmit={handleResetPassword}>
         <input
@@ -36,6 +36,7 @@ const ForgotPassword = () => {
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <button type="submit">Reset Password</button>
       </form>
