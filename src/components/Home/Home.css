@@ -1,0 +1,59 @@
+/* Home.css */
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+    height: 100%;
+  }
+  
+  nav {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content:end; /* Corrected value */
+    align-items: center;
+    max-width: 1200px; /* Adjust the max-width as needed */
+    margin: 0 auto; /* Center the container horizontally */
+  }
+  
+  
+  .login-button {
+    padding: 8px 16px;
+    background-color: #61dafb;
+    color: #fff;
+    text-decoration: none; /* Remove default underline for Link */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #0c89db;
+  }
+  
+  .content {
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: center;
+  }
+  img{
+    width: 70%;
+
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  p {
+    color: #666;
+  }
