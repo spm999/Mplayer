@@ -1,0 +1,62 @@
+.musicplayer-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  button {
+    margin-bottom: 10px;
+  }
+  
+  .columns {
+    display: flex;
+  }
+  
+  .column {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  thead th, tbody td {
+    border: 1px solid #393939;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  tbody td {
+    vertical-align: top;
+  }
+  
+  .song-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .song-list li {
+    margin-bottom: 10px;
+  }
+  
+  .delete {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .delete:hover {
+    background-color: #d32f2f;
+  }
+  
+  .logout{
+    background-color: #007bff;
+  }

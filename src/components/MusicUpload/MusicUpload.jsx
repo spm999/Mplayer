@@ -1,50 +1,53 @@
-import React, { useState } from "react";
-import { useAuth } from "../AuthContext"; // Import useAuth from your context file
-// import { storageRef } from "../../firebase/firebase";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import React, { useState } from 'react';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { useAuth } from '../AuthContext';
 
+const MusicUpload = ({ onUploadSuccess }) => {
+  const [uploading, setUploading] = useState(false);
+  const [uploadmessage, setUploadmessage] = useState('');
+  const [selectedFiles, setSelectedFiles] = useState([]);
 
-const MusicUpload = () => {
-  const { user } = useAuth(); // Use the useAuth hook to get user from context
-  const [file, setFile] = useState(null);
-  const [error, setError] = useState(null);
+  const { user } = useAuth();
+  const storage = getStorage();
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-
-    if (selectedFile) {
-      setFile(selectedFile);
-    } else {
-      setError("Please select a file");
-    }
+  const handleFileChange = (event) => {
+    setSelectedFiles(event.target.files);
   };
 
-  const handleUpload = async () => {
-    if (file) {
+  const handleFileUpload = async () => {
+    if (selectedFiles.length === 0) {
+      setUploadmessage('Error: Please select audio file(s) before uploading.');
+      setTimeout(() => setUploadmessage(''), 3000);
+      return;
+    }
 
-      const storage = getStorage();
-const fileRef = ref(storage, `music/${user?.uid}/${file.name}`);
-      // const fileRef = storageRef(`music/${user?.uid}/${file.name}`);
-      // Use optional chaining (user?.uid) to avoid potential errors if user is not defined
-      // await fileRef.put(file);
+    setUploading(true);
 
-      // 'file' comes from the Blob or File API
-uploadBytes(fileRef, file).then((snapshot) => {
-  console.log('Uploaded a blob or file!');
-});
+    try {
+      const uploadPromises = Array.from(selectedFiles).map(async (file) => {
+        const fileName = file.name;
+        const fileRef = ref(storage, `music/${user.uid}/${fileName}`);
+        await uploadBytes(fileRef, file);
+      });
 
-      setFile(null);
-      setError(null);
-    } else {
-      setError("Please select a file before uploading");
+      await Promise.all(uploadPromises);
+      setUploadmessage('Upload Successful');
+      onUploadSuccess(); // Trigger the parent component to refresh the song list
+    } catch (error) {
+      console.error('Error uploading files:', error);
+    } finally {
+      setUploading(false);
     }
   };
 
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
-      {error && <p>{error}</p>}
+      <input type="file" multiple onChange={handleFileChange} />
+      <button onClick={handleFileUpload} disabled={!selectedFiles}>
+        Upload
+      </button>
+      {uploading && <p>Uploading...</p>}
+      {uploadmessage && <p style={{color:"green"}}>{uploadmessage}</p>}
     </div>
   );
 };
