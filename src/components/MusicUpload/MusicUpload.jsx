@@ -11,7 +11,13 @@ const MusicUpload = ({ onUploadSuccess }) => {
   const storage = getStorage();
 
   const handleFileChange = (event) => {
-    setSelectedFiles(event.target.files);
+    // setSelectedFiles(event.target.files);
+       const files = event.target.files;
+    // Filter out files that are not MP3
+    const mp3Files = Array.from(files).filter((file) =>
+      file.name.toLowerCase().endsWith('.mp3')
+    );
+    setSelectedFiles(mp3Files);
   };
 
   const handleFileUpload = async () => {
