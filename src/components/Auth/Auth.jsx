@@ -52,9 +52,9 @@ const Auth = () => {
           <button type="submit">Login with Email</button>
         </form>
 
-        <div className="google-button">
+{/*         <div className="google-button">
           <button onClick={handleGoogleLogin}>Login with Google</button>
-        </div>
+        </div> */}
 
         <p>
           Don't have an account? <Link to="/signup">Sign up here</Link>
