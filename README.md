@@ -47,4 +47,6 @@ npm start
 ### Contributing
 Contributions are welcome! Feel free to submit pull requests or open issues for any bugs or feature requests.
 
-## for a detailed blog on this project, please visit [Medium](https://medium.com/@developerstoday99/creating-a-music-player-with-reactjs-vite-firebase-authentication-and-firebase-storage-a48dc6a0a558)
+
+
+## For a detailed blog on this project, please visit [Medium](https://medium.com/@developerstoday99/creating-a-music-player-with-reactjs-vite-firebase-authentication-and-firebase-storage-a48dc6a0a558)
