@@ -1,7 +1,5 @@
 # Music player using Reactjs+Firebase
 
-### https://mplayer-zmqi.vercel.app/
-
 This project is a simple music player application built using ReactJS for the frontend and Firebase for the backend. It allows users to listen to their favorite music tracks stored in the Firebase Cloud Storage.
 
 ## Features
